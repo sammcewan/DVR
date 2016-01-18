@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DVR"
-  s.version      = "0.2.1"
+  s.version      = "0.2.2"
   s.summary      = "Network testing for Swift"
 
   s.description  = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "10.10"
   s.watchos.deployment_target = "2.0"
 
-  s.source       = { :git => "https://github.com/sammcewan/DVR.git", :tag => "v0.2.1" }
+  s.source       = { :git => "https://github.com/sammcewan/DVR.git", :tag => "v0.2.2" }
 
   s.source_files  = "DVR/*.{swift}"
 
