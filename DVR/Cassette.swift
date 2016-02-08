@@ -22,12 +22,20 @@ struct Cassette {
         for interaction in interactions {
             let interactionRequest = interaction.request
 
-            // Note: We don't check headers right now
-            if interactionRequest.HTTPMethod == request.HTTPMethod && interactionRequest.URL == request.URL && interactionRequest.hasHTTPBodyEqualToThatOfRequest(request)  {
+            // Note: We don't check headers right now EXCEPT auth
+            if interactionRequest.HTTPMethod == request.HTTPMethod && validateAuthorizationHeaders(request, request2: interactionRequest) == true && interactionRequest.URL == request.URL && interactionRequest.hasHTTPBodyEqualToThatOfRequest(request)  {
                 return interaction
             }
         }
         return nil
+    }
+
+    private func validateAuthorizationHeaders(request1: NSURLRequest, request2: NSURLRequest) -> Bool {
+        guard let request1Authorization = request1.allHTTPHeaderFields?["Authorization"], request2Authorization = request2.allHTTPHeaderFields?["Authorization"] else {
+            return true
+        }
+
+        return request1Authorization == request2Authorization
     }
 }
 
